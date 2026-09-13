@@ -1,4 +1,7 @@
 import { prisma } from './prisma';
+import type { Message } from '@prisma/client';
+
+export type { Message };
 
 export async function addMessage(data: {
   name: string;
@@ -8,7 +11,7 @@ export async function addMessage(data: {
   return prisma.message.create({ data });
 }
 
-export async function getMessages(options?: { search?: string }) {
+export async function getMessages(options?: { search?: string }): Promise<Message[]> {
   if (options?.search) {
     return prisma.message.findMany({
       where: {

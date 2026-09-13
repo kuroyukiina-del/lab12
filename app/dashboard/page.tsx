@@ -1,11 +1,11 @@
-import { getMessages } from '@/lib/messages';
+import { getMessages, type Message } from '@/lib/messages';
 import LogoutButton from '@/components/LogoutButton';
 import ChangePasswordForm from '@/components/ChangePasswordForm';
 
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
-  const messages = await getMessages();
+  const messages: Message[] = await getMessages();
 
   return (
     <main className="p-8">
@@ -22,7 +22,7 @@ export default async function DashboardPage() {
         </p>
       ) : (
         <div className="space-y-4">
-          {messages.map((message) => (
+          {messages.map((message: Message) => (
             <article key={message.id} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
               <div className="mb-2 flex items-center justify-between">
                 <h2 className="font-semibold text-blue-800">{message.name}</h2>
